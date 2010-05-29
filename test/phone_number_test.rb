@@ -39,4 +39,14 @@ class LineCheckTest < Test::Unit::TestCase
     assert_equal "(01)8321234", phone_number.to_s
   end
   
+  def test_valid_with_valid_number
+    phone_number = PhoneNumber.new(@valid_number)
+    assert phone_number.valid?
+  end
+  
+  def test_valid_with_invalid_number
+    phone_number = PhoneNumber.new(@invalid_number)
+    assert !phone_number.valid?
+  end
+  
 end

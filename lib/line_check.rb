@@ -15,6 +15,7 @@ class LineCheck
   end
   
   def process
+    return "Phone number invalid. Valid format: (01)8321234" if !@phone_number.valid?
     page_uri = get_line_check_result_uri
     format_result(page_uri)
   end
@@ -66,6 +67,10 @@ class PhoneNumber
   
   def to_s
     "(#{@area})#{@number}"
+  end
+  
+  def valid?
+    !@area.nil? && !@number.nil? || false
   end
   
 end
