@@ -19,7 +19,7 @@ end
 helpers do
   def flash_message
     unless session[:flash].nil?
-      value = session[:flash].dup
+      value = session[:flash]
       session[:flash] = nil
       '<p class="flash">' + value + '</p>'
     end
