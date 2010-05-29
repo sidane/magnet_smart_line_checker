@@ -32,6 +32,7 @@ class LineCheckerTest < Test::Unit::TestCase
     
     post '/process', :phone_numbers => "(01)8323055"
     
+    assert last_response.ok?
     assert_match /Line Checker Results/, last_response.body
     assert_match /\(01\)8323055/, last_response.body
     assert_match /<strong>Magnet:<\/strong> Yes/, last_response.body
@@ -46,6 +47,7 @@ class LineCheckerTest < Test::Unit::TestCase
     
     post '/process', :phone_numbers => "(01)5551235"
     
+    assert last_response.ok?
     assert_match /Line Checker Results/, last_response.body
     assert_match /\(01\)5551235/, last_response.body
     assert_match /<strong>Magnet:<\/strong> No/, last_response.body
@@ -55,8 +57,29 @@ class LineCheckerTest < Test::Unit::TestCase
   def test_process_with_invalid_phone_number    
     post '/process', :phone_numbers => "5551235"
     
+    assert last_response.ok?
     assert_match /Line Checker Results/, last_response.body
     assert_match /Phone number invalid. Valid format: \(01\)8321234/, last_response.body
+  end
+  
+  def test_process_with_multiple_phone_numbers_and_mixed_results
+    MagnetLineCheck.any_instance.
+    expects(:get_line_check_result_uri).twice.
+    returns(MagnetLineCheck.new("123").on_net_url, MagnetLineCheck.new("123").off_net_url)
+    SmartLineCheck.any_instance.
+    expects(:get_line_check_result_uri).twice.
+    returns(SmartLineCheck.new("123").on_net_url, SmartLineCheck.new("123").off_net_url)
+    
+    post "/process", :phone_numbers => "(01)55512345 (01)55567890"
+
+    assert last_response.ok?
+    assert_match /Line Checker Results/, last_response.body
+    assert_match /\(01\)55512345/, last_response.body
+    assert_match /\(01\)55567890/, last_response.body
+    assert_match /<strong>Magnet:<\/strong> Yes/, last_response.body
+    assert_match /<strong>Magnet:<\/strong> No/, last_response.body
+    assert_match /<strong>Smart:<\/strong> Yes/, last_response.body
+    assert_match /<strong>Smart:<\/strong> No/, last_response.body
   end
   
 end
