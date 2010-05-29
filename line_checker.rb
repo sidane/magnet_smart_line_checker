@@ -31,6 +31,7 @@ helpers do
         array << "<h3>#{result[:phone_number]}</h3>"
         array << "<p>"
         array << "<strong>Magnet:</strong> #{result[:magnet_result]}</p>"
+        array << "<hr />"
       end.join("\n")
     end
   end
