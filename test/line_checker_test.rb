@@ -49,19 +49,5 @@ class LineCheckerTest < Test::Unit::TestCase
     assert_match /Line Checker Results/, last_response.body
     assert_match /Phone number invalid. Valid format: \(01\)8321234/, last_response.body
   end
-  # def test_process_with_valid_number
-  #     get '/'
-  #     assert last_response.ok?
-  #     assert_match /Line Checker/, last_response.body
-  #   end
   
-  # def test_with_params
-  #   get '/meet', :name => 'Frank'
-  #   assert_equal 'Hello Frank!', last_response.body
-  # end
-  # 
-  # def test_with_rack_env
-  #   get '/', {}, 'HTTP_USER_AGENT' => 'Songbird'
-  #   assert_equal "You're using Songbird!", last_response.body
-  # end
 end
