@@ -34,3 +34,4 @@ end
 
 require File.dirname(__FILE__) + '/phone_number'
 require File.dirname(__FILE__) + '/magnet_line_check'
+require File.dirname(__FILE__) + '/smart_line_check'

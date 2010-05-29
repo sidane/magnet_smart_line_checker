@@ -31,6 +31,7 @@ helpers do
         array << "<h3>#{result[:phone_number]}</h3>"
         array << "<p>"
         array << "<strong>Magnet:</strong> #{result[:magnet_result]}</p>"
+        array << "<strong>Smart:</strong> #{result[:smart_result]}</p>"
         array << "<hr />"
       end.join("\n")
     end
@@ -51,6 +52,7 @@ end
       hash = {}
       hash[:phone_number] = phone_number
       hash[:magnet_result] = MagnetLineCheck.new(phone_number).process
+      hash[:smart_result] = SmartLineCheck.new(phone_number).process
       array << hash
     end
   end
