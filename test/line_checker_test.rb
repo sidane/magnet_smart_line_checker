@@ -34,6 +34,7 @@ class LineCheckerTest < Test::Unit::TestCase
     assert_match /Line Checker Results/, last_response.body
     assert_match /\(01\)8323055/, last_response.body
     assert_match /<strong>Magnet:<\/strong> Yes/, last_response.body
+    assert_match /<strong>Smart:<\/strong> Yes/, last_response.body
   end
   
   def test_process_with_off_net_phone_number
@@ -47,6 +48,7 @@ class LineCheckerTest < Test::Unit::TestCase
     assert_match /Line Checker Results/, last_response.body
     assert_match /\(01\)5551235/, last_response.body
     assert_match /<strong>Magnet:<\/strong> No/, last_response.body
+    assert_match /<strong>Smart:<\/strong> No/, last_response.body
   end
   
   def test_process_with_invalid_phone_number    
