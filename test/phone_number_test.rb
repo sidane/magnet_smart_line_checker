@@ -1,5 +1,5 @@
 require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/line_check'
+require File.dirname(__FILE__) + '/../lib/phone_number'
 
 class LineCheckTest < Test::Unit::TestCase
 
