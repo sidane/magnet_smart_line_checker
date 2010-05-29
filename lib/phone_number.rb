@@ -6,12 +6,17 @@ class PhoneNumber
     @area, @number = phone_number.scan(/\((\d*)\)\s?(\d*)/).flatten
   end
   
-  def to_s
-    "(#{@area})#{@number}"
+  def to_s(with_brackets = true)
+    array = []
+    array << "(" if with_brackets
+    array << @area
+    array << ")" if with_brackets
+    array << @number
+    array.join
   end
   
   def valid?
-    !@area.nil? && !@number.nil? || false
+    !@number.nil?
   end
   
 end
