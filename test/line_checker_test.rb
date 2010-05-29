@@ -23,8 +23,11 @@ class LineCheckerTest < Test::Unit::TestCase
     assert_match /Please enter at least one phone number/, last_response.body
   end
   
-  def test_process_with_valid_on_net_phone_number
-    MagnetLineCheck.any_instance.expects(:get_line_check_result_uri).returns(MagnetLineCheck.new("123").on_net_url)
+  def test_process_with_on_net_phone_number
+    MagnetLineCheck.any_instance.
+    expects(:get_line_check_result_uri).returns(MagnetLineCheck.new("123").on_net_url)
+    SmartLineCheck.any_instance.
+    expects(:get_line_check_result_uri).returns(SmartLineCheck.new("123").on_net_url)
     
     post '/process', :phone_numbers => "(01)8323055"
     
@@ -33,8 +36,11 @@ class LineCheckerTest < Test::Unit::TestCase
     assert_match /<strong>Magnet:<\/strong> Yes/, last_response.body
   end
   
-  def test_process_with_valid_off_net_phone_number
-    MagnetLineCheck.any_instance.expects(:get_line_check_result_uri).returns(MagnetLineCheck.new("123").off_net_url)
+  def test_process_with_off_net_phone_number
+    MagnetLineCheck.any_instance.
+    expects(:get_line_check_result_uri).returns(MagnetLineCheck.new("123").off_net_url)
+    SmartLineCheck.any_instance.
+    expects(:get_line_check_result_uri).returns(SmartLineCheck.new("123").off_net_url)
     
     post '/process', :phone_numbers => "(01)5551235"
     
@@ -43,7 +49,7 @@ class LineCheckerTest < Test::Unit::TestCase
     assert_match /<strong>Magnet:<\/strong> No/, last_response.body
   end
   
-  def test_process_with_valid_off_net_phone_number    
+  def test_process_with_invalid_phone_number    
     post '/process', :phone_numbers => "5551235"
     
     assert_match /Line Checker Results/, last_response.body
