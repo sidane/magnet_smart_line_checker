@@ -34,7 +34,7 @@ end
 
 class MagnetLineCheck < LineCheck
   
-  # Positive on_net phone number = (01)8325241 :-)
+  # Positive on_net phone number = (01)8323055
   
   def initialize(phone_number)
     super
