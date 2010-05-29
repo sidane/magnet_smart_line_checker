@@ -21,6 +21,7 @@ class LineCheckerTest < Test::Unit::TestCase
     follow_redirect!
     
     assert_match /Please enter at least one phone number/, last_response.body
+    assert_match /<form action="\/process"/, last_response.body
   end
   
   def test_process_with_on_net_phone_number
