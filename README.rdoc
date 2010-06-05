@@ -1,0 +1,7 @@
+= Magnet / Smart Line Checker
+
+Sinatra app which screen-scrapes Ireland's Magnet and Smart Telecom's broadband line checker pages. Allows for quickly checking if one or more phone numbers can have broadband delivered by Magnet and/or Smart's own network, rather than piggy-backing on Eircom's network.   
+
+A simple little app really, and primarily a way for me to experiment with Sinatra for the first time.
+
+See it in action on Heroku at http://line-checker.heroku.com/
