@@ -4,4 +4,4 @@ Sinatra app which screen-scrapes Ireland's Magnet and Smart Telecom's broadband 
 
 A simple little app really, and primarily a way for me to experiment with Sinatra for the first time.
 
-See it in action on Heroku at http://line-checker.heroku.com/
+See it in action on Heroku at http://line-checker.heroku.com
